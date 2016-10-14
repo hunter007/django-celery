@@ -104,6 +104,8 @@ for dirpath, dirnames, filenames in os.walk(src_dir):
             while '.'.join(parts) not in packages:
                 relative_path.append(parts.pop())
             relative_path.reverse()
+            if not relative_path:
+                continue
             path = os.path.join(*relative_path)
             package_files = package_data.setdefault('.'.join(parts), [])
             package_files.extend([os.path.join(path, f) for f in filenames])
